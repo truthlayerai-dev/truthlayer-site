@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TruthLayer — Leak-Lock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>:root{--gold:#D4AF37;--navy:#0F172A}html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}</style>
+</head><body class="bg-[--navy] text-white">
+<header class="border-b border-white/10">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full border border-[--gold] grid place-items-center text-[--gold] font-bold">TL</div>
+      <span class="text-lg font-semibold">TruthLayer</span>
+    </div>
+    <a href="https://truthlayerai-dev.github.io/truthlayer-site/terms.html" class="text-white/70 hover:text-white underline">Terms</a>
+  </div>
+</header>
+<section class="max-w-6xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-10 items-center">
+  <div>
+    <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">Stop leaks. <span class="text-[--gold]">Personalized watermarks</span> for every buyer.</h1>
+    <p class="mt-4 text-white/80 text-lg">Keep your revenue. DMCA takedown kit included. Batch-generate one unique copy per buyer in minutes.</p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-3">
+      <a href="mailto:truthlayer.ai@gmail.com?subject=TruthLayer%20Leak-Lock%20Starter%20%E2%80%94%20Get%20Me%20Set%20Up&body=Hey%20TruthLayer,%0D%0A%0D%0AI%20want%20to%20start%20Leak-Lock%20(Starter).%0D%0A%0D%0AMy%20details:%0D%0A- %20Name:%0D%0A- %20Email:%0D%0A- %20Discord%20handle%20(optional):%0D%0A- %20Asset%20link%20(Drive/Dropbox):%0D%0A- %20Buyer%20list%20(CSV%20or%20names/emails):%0D%0A- %20Notes%20(watermark%20placement/opacity):%0D%0A%0D%0AThanks!" class="inline-flex items-center justify-center rounded-2xl px-6 py-3 bg-[--gold] text-[--navy] font-semibold">Get Started</a>
+      <a href="https://truthlayerai-dev.github.io/truthlayer-site/thank-you.html" class="inline-flex items-center justify-center rounded-2xl px-6 py-3 border border-white/20 text-white hover:bg-white/5">I already emailed</a>
+    </div>
+    <p class="mt-4 text-sm text-white/70">✅ 24-hour turnaround  ✅ Subtle corner ID  ✅ Optional repeating tile overlay</p>
+  </div>
+  <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+    <div class="text-sm uppercase tracking-wider text-[--gold] font-semibold mb-3">Quick Start (Canva)</div>
+    <ol class="space-y-3 text-white/85">
+      <li>Upload your asset (or the demo PDF).</li>
+      <li>Place <b class="text-[--gold]">TL_CornerTag_Gold</b> top-right → transparency <b>60–70%</b> → Lock.</li>
+      <li>Add text @ <b>35%</b> opacity:<br><code class="bg-black/50 px-2 py-1 rounded">{buyer_name} · {order_id} · {date} · {proof_id}</code></li>
+      <li>Apps → Bulk Create → Upload CSV → map fields → Generate multiple designs.</li>
+      <li>Download → ZIP (PDF/PNG). Deliver.</li>
+    </ol>
+  </div>
+</section>
+<footer class="bg-[--navy] border-t border-white/10">
+  <div class="max-w-6xl mx-auto px-4 py-10 flex items-center justify-between">
+    <p class="text-white/70 text-sm">Questions? <a href="mailto:truthlayer.ai@gmail.com" class="text-[--gold] underline">truthlayer.ai@gmail.com</a></p>
+    <p class="text-white/50 text-xs">© <span id="y"></span> TruthLayer</p>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body></html>
