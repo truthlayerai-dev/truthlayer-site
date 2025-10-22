@@ -75,7 +75,6 @@
       <!-- Intake Form (Formspree) -->
       <div id="intake" style="margin-top:28px">
         <form action="https://formspree.io/f/movkbyol" method="POST" class="card" id="intakeForm">
-          <!-- redirect back to this page with #thank-you -->
           <input type="hidden" name="_redirect" value="index.html#thank-you">
           <input type="hidden" name="_subject" value="TruthLayer Leak-Lock — New Request">
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
@@ -111,17 +110,15 @@
 
           <button type="submit" class="btn btn-gold" style="margin-top:4px">Send Request</button>
 
-          <!-- Stripe Pay buttons -->
+          <!-- Stripe Pay buttons (both always visible) -->
           <div id="payButtons" style="margin-top:10px; display:grid; gap:8px">
-            <!-- Starter subscription (always visible) -->
             <a id="payStarter" href="https://buy.stripe.com/3cI8wIbK2bYM9bC5LjaVa00"
                class="btn btn-gold" style="text-align:center" target="_blank" rel="noopener noreferrer">
               Pay $39 — Starter (Monthly)
             </a>
 
-            <!-- Rush add-on (auto-shows when 'Rush (asap)' selected) -->
             <a id="payRush" href="https://buy.stripe.com/14AfZa5lE5AodrS3DbaVa01"
-               class="btn btn-ghost" style="display:none; text-align:center" target="_blank" rel="noopener noreferrer">
+               class="btn btn-ghost" style="display:inline-flex; text-align:center" target="_blank" rel="noopener noreferrer">
               + $25 Rush Add-On (ASAP)
             </a>
 
@@ -223,7 +220,7 @@
 <footer>
   <div class="container row">
     <div>Questions? <span style="color:var(--gold)">truthlayer.ai@gmail.com</span></div>
-    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v3</div>
+    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v4</div>
   </div>
 </footer>
 
@@ -253,22 +250,7 @@
   }
   window.addEventListener('hashchange', updatePanels);
   updatePanels();
-
-  // Toggle Rush button when user selects "Rush (asap)"
-  document.addEventListener('DOMContentLoaded', function () {
-    const urgency = document.getElementById('urgencySelect');
-    const rushBtn = document.getElementById('payRush');
-    if (!urgency || !rushBtn) return;
-
-    function syncRush() {
-      const val = (urgency.value || urgency.options[urgency.selectedIndex]?.text || '').toLowerCase();
-      rushBtn.style.display = val.includes('rush') ? 'inline-flex' : 'none';
-    }
-
-    urgency.addEventListener('change', syncRush);
-    // run once on load
-    syncRush();
-  });
 </script>
 </body>
 </html>
+
