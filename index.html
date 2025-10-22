@@ -102,7 +102,7 @@
               </select>
             </label></div>
             <div><label>Urgency
-              <select name="urgency">
+              <select name="urgency" id="urgencySelect">
                 <option>Standard (24h)</option>
                 <option>Rush (asap)</option>
               </select>
@@ -115,13 +115,13 @@
           <div id="payButtons" style="margin-top:10px; display:grid; gap:8px">
             <!-- Starter subscription (always visible) -->
             <a id="payStarter" href="https://buy.stripe.com/3cI8wIbK2bYM9bC5LjaVa00"
-               class="btn btn-gold" style="text-align:center">
+               class="btn btn-gold" style="text-align:center" target="_blank" rel="noopener noreferrer">
               Pay $39 — Starter (Monthly)
             </a>
 
             <!-- Rush add-on (auto-shows when 'Rush (asap)' selected) -->
             <a id="payRush" href="https://buy.stripe.com/14AfZa5lE5AodrS3DbaVa01"
-               class="btn btn-ghost" style="display:none; text-align:center">
+               class="btn btn-ghost" style="display:none; text-align:center" target="_blank" rel="noopener noreferrer">
               + $25 Rush Add-On (ASAP)
             </a>
 
@@ -254,18 +254,21 @@
   window.addEventListener('hashchange', updatePanels);
   updatePanels();
 
-  // Show/hide Rush button based on urgency choice
-  (function(){
-    const urgency = document.querySelector('select[name="urgency"]');
+  // Toggle Rush button when user selects "Rush (asap)"
+  document.addEventListener('DOMContentLoaded', function () {
+    const urgency = document.getElementById('urgencySelect');
     const rushBtn = document.getElementById('payRush');
     if (!urgency || !rushBtn) return;
-    function syncRush(){
-      rushBtn.style.display = (urgency.value.toLowerCase().includes('rush')) ? 'inline-flex' : 'none';
+
+    function syncRush() {
+      const val = (urgency.value || urgency.options[urgency.selectedIndex]?.text || '').toLowerCase();
+      rushBtn.style.display = val.includes('rush') ? 'inline-flex' : 'none';
     }
+
     urgency.addEventListener('change', syncRush);
+    // run once on load
     syncRush();
-  })();
+  });
 </script>
 </body>
 </html>
-
