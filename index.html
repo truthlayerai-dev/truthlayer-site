@@ -10,23 +10,21 @@
   html,body{margin:0;padding:0;background:var(--navy);color:var(--text);
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   *{box-sizing:border-box}
-  header,section,footer,form,a,button,input,textarea,select{position:relative;z-index:1;pointer-events:auto}
-  *[style*="pointer-events: none"]{pointer-events:auto!important}
-  body>div,body>header,body>section,body>footer{pointer-events:auto!important}
   .container{max-width:1100px;margin:0 auto;padding:16px}
   header{border-bottom:1px solid rgba(255,255,255,.12)}
   header .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
   .brand{display:flex;align-items:center;gap:10px;font-weight:600}
   .logo{width:36px;height:36px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-weight:800}
   a.link{color:rgba(255,255,255,.85);text-decoration:underline}
-  .hero{display:grid;grid-template-columns:1fr;gap:24px;padding:48px 0}
+  .hero{display:grid;grid-template-columns:1fr;gap:24px;padding:36px 0}
   @media(min-width:900px){.hero{grid-template-columns:1.1fr .9fr}}
   h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:0;font-weight:800}
   p.lead{margin:12px 0 0;font-size:18px;color:rgba(255,255,255,.85)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.5);
+        color:var(--gold);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;letter-spacing:.02em}
   .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:14px;font-weight:600;border:1px solid transparent;cursor:pointer;text-decoration:none}
   .btn-gold{background:var(--gold);color:var(--navy)}
-  .btn-ghost{border-color:rgba(255,255,255,.2);color:#fff;background:transparent}
-  .btn:focus{outline:2px solid var(--gold);outline-offset:2px}
+  .btn-ghost{border-color:rgba(255,255,255,.2);color:#fff;background:transparent;border:1px solid rgba(255,255,255,.2)}
   .card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:20px;padding:18px}
   .steps ol{margin:0;padding-left:18px;color:rgba(255,255,255,.9)}
   code.inline{background:rgba(0,0,0,.45);padding:2px 6px;border-radius:6px}
@@ -40,7 +38,7 @@
   .light .container{padding:40px 16px}
   .pricing-card{border:1px solid #e5e7eb;border-radius:20px;padding:18px;background:#fff}
   .price{color:var(--gold);font-weight:800;font-size:32px}
-  .faq p{margin:12px 0;color:#111827}
+  .muted{color:#6b7280}
   footer{border-top:1px solid rgba(255,255,255,.12)}
   footer .row{display:flex;align-items:center;justify-content:space-between;padding:22px 0;color:rgba(255,255,255,.7);font-size:14px}
   html{scroll-behavior:smooth}
@@ -64,7 +62,8 @@
 <section>
   <div class="container hero">
     <div>
-      <h1>Stop leaks. <span style="color:var(--gold)">Personalized watermarks</span> for every buyer.</h1>
+      <span class="pill">Founders Price — $39/mo (first 10)</span>
+      <h1 style="margin-top:10px">Stop leaks. <span style="color:var(--gold)">Personalized watermarks</span> for every buyer.</h1>
       <p class="lead">Keep your revenue. DMCA takedown kit included. Batch-generate one unique copy per buyer.</p>
 
       <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px">
@@ -108,23 +107,22 @@
             </label></div>
           </div>
 
-         <!-- TEMP: $1 Live Test Button (remove after testing) -->
-<a href="REPLACE_WITH_YOUR_$1_LINK"
-   class="btn btn-ghost"
-   style="margin-top:8px; text-align:center"
-   target="_blank" rel="noopener noreferrer">
-  $1 Live Test Checkout
-</a>
-<!-- TEMP: $1 Live Test Button (remove after testing) -->
-<a href="https://buy.stripe.com/cNieV67tM6Es4Vm2z7aVa02"
-   class="btn btn-ghost"
-   style="margin-top:8px; text-align:center"
-   target="_blank" rel="noopener noreferrer">
-  $1 Live Test Checkout
-</a>
+          <div class="grid-2">
+            <div><label>Logo watermark
+              <select name="logo_pref">
+                <option>No logo (default)</option>
+                <option>Client logo faint tile (8–12% opacity)</option>
+                <option>Client logo corner tag</option>
+              </select>
+            </label></div>
+            <div><label>Client logo URL (optional PNG/SVG)
+              <input name="logo_url" type="url" placeholder="https://.../logo.png">
+            </label></div>
+          </div>
 
+          <button type="submit" class="btn btn-gold" style="margin-top:4px">Send Request</button>
 
-          <!-- Stripe Pay buttons (both always visible) -->
+          <!-- Stripe Pay buttons (Starter always visible, Rush toggles) -->
           <div id="payButtons" style="margin-top:10px; display:grid; gap:8px">
             <a id="payStarter" href="https://buy.stripe.com/3cI8wIbK2bYM9bC5LjaVa00"
                class="btn btn-gold" style="text-align:center" target="_blank" rel="noopener noreferrer">
@@ -132,7 +130,7 @@
             </a>
 
             <a id="payRush" href="https://buy.stripe.com/14AfZa5lE5AodrS3DbaVa01"
-               class="btn btn-ghost" style="display:inline-flex; text-align:center" target="_blank" rel="noopener noreferrer">
+               class="btn btn-ghost" style="display:none; text-align:center" target="_blank" rel="noopener noreferrer">
               + $25 Rush Add-On (ASAP)
             </a>
 
@@ -151,11 +149,17 @@
       </div>
       <ol>
         <li>Upload your asset (or the demo PDF).</li>
-        <li>Place <b style="color:var(--gold)">TL_CornerTag_Gold</b> top-right → transparency <b>60–70%</b> → Lock.</li>
-        <li>Add text @ <b>35%</b> opacity:<br><span class="inline">{buyer_name} · {order_id} · {date} · {proof_id}</span></li>
+        <li>Place buyer-ID text @ <b>35%</b> opacity:<br><span class="inline">{buyer_name} · {order_id} · {date} · {proof_id}</span></li>
+        <li>(Optional) Client logo:
+          <ul>
+            <li><b>Faint tile:</b> tiny logo repeated, <b>8–12%</b> opacity, behind content.</li>
+            <li><b>Corner tag:</b> small logo top-right, <b>60–70%</b> opacity, then <b>Lock</b>.</li>
+          </ul>
+        </li>
         <li>Apps → Bulk Create → Upload CSV → map fields → Generate multiple designs.</li>
-        <li>Download → ZIP (PDF/PNG). Deliver.</li>
+        <li>Download → ZIP (PDF/PNG). Deliver + include DMCA template.</li>
       </ol>
+      <p class="muted" style="margin-top:8px">Best practice: don’t put the TruthLayer logo on client deliverables by default. Use buyer-ID text always; client logo only if requested.</p>
     </div>
   </div>
 </section>
@@ -168,6 +172,7 @@
         <div style="font-weight:700">Starter</div>
         <div class="price">$39<span style="font-size:14px;color:#6b7280;font-weight:600">/mo</span></div>
       </div>
+      <div class="muted" style="margin-top:6px">Founders price for the first 10 customers.</div>
       <ul style="margin:12px 0 0 18px;color:#111827">
         <li>Unlimited image/PDF batches (≤1k copies/asset)</li>
         <li>24-hour turnaround</li>
@@ -181,8 +186,8 @@
 <section class="light" style="padding-top:0">
   <div class="container faq">
     <h2 style="font-size:28px;font-weight:800;margin:0 0 6px">FAQ</h2>
-    <p><b>Will buyers notice the watermark?</b><br>It’s subtle (~35% text opacity) and sits in the corner.</p>
-    <p><b>Can’t someone crop it out?</b><br>We place it near content; optional faint tile overlay adds deterrence.</p>
+    <p><b>Will buyers notice the watermark?</b><br>Text is subtle (~35% opacity) and sits near content; logo (if used) is very faint.</p>
+    <p><b>Can’t someone crop it out?</b><br>We place identifiers near content; optional faint tile adds deterrence.</p>
     <p><b>Turnaround?</b><br>Typically within 24 hours for image/PDF batches.</p>
     <p><b>What file types?</b><br>PDF, PNG/JPG, and MP4 (Pro).</p>
   </div>
@@ -234,7 +239,7 @@
 <footer>
   <div class="container row">
     <div>Questions? <span style="color:var(--gold)">truthlayer.ai@gmail.com</span></div>
-    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v4</div>
+    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v7</div>
   </div>
 </footer>
 
@@ -264,7 +269,22 @@
   }
   window.addEventListener('hashchange', updatePanels);
   updatePanels();
+
+  // Toggle Rush button when "Rush (asap)" is selected
+  document.addEventListener('DOMContentLoaded', function () {
+    const urgency = document.getElementById('urgencySelect');
+    const rushBtn = document.getElementById('payRush');
+    if (!urgency || !rushBtn) return;
+
+    function syncRush() {
+      const text = (urgency.options[urgency.selectedIndex]?.text || '').toLowerCase();
+      const val = (urgency.value || '').toLowerCase();
+      const isRush = text.includes('rush') || val.includes('rush') || urgency.selectedIndex === 1;
+      rushBtn.style.display = isRush ? 'inline-flex' : 'none';
+    }
+    urgency.addEventListener('change', syncRush);
+    syncRush(); // run once on load
+  });
 </script>
 </body>
 </html>
-
