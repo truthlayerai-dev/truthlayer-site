@@ -100,9 +100,11 @@
               </select>
             </label></div>
             <div><label>Urgency
-              <select name="urgency" id="urgencySelect">
-                <option>Standard (24h)</option>
-                <option>Rush (asap)</option>
+              <!-- INLINE TOGGLE ensures Rush button appears immediately -->
+              <select name="urgency" id="urgencySelect"
+                onchange="document.getElementById('payRush').style.display = (this.value==='rush' ? 'inline-flex' : 'none')">
+                <option value="standard">Standard (24h)</option>
+                <option value="rush">Rush (asap)</option>
               </select>
             </label></div>
           </div>
@@ -239,7 +241,7 @@
 <footer>
   <div class="container row">
     <div>Questions? <span style="color:var(--gold)">truthlayer.ai@gmail.com</span></div>
-    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v7</div>
+    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v8</div>
   </div>
 </footer>
 
@@ -269,22 +271,6 @@
   }
   window.addEventListener('hashchange', updatePanels);
   updatePanels();
-
-  // Toggle Rush button when "Rush (asap)" is selected
-  document.addEventListener('DOMContentLoaded', function () {
-    const urgency = document.getElementById('urgencySelect');
-    const rushBtn = document.getElementById('payRush');
-    if (!urgency || !rushBtn) return;
-
-    function syncRush() {
-      const text = (urgency.options[urgency.selectedIndex]?.text || '').toLowerCase();
-      const val = (urgency.value || '').toLowerCase();
-      const isRush = text.includes('rush') || val.includes('rush') || urgency.selectedIndex === 1;
-      rushBtn.style.display = isRush ? 'inline-flex' : 'none';
-    }
-    urgency.addEventListener('change', syncRush);
-    syncRush(); // run once on load
-  });
 </script>
 </body>
 </html>
