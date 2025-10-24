@@ -54,6 +54,7 @@
     <div class="brand"><div class="logo">TL</div><div>TruthLayer</div></div>
     <nav style="display:flex;gap:16px">
       <a class="link" href="#intake">Get Started</a>
+      <a class="link" href="#portfolio">Portfolio</a>
       <a class="link" href="#terms">Terms</a>
     </nav>
   </div>
@@ -133,11 +134,15 @@
                class="btn btn-ghost" style="display:inline-flex; text-align:center" target="_blank" rel="noopener noreferrer">
               + $25 Rush Add-On (ASAP)
             </a>
-<!-- Support + Terms (always visible) -->
-<p style="font-size:12px; color:rgba(255,255,255,.75); margin:4px 0 0">
-  Need help? <a href="mailto:truthlayer.ai@gmail.com" style="color:#D4AF37">truthlayer.ai@gmail.com</a> ·
-  <a href="#terms" style="color:#D4AF37">Terms & Refunds</a>
-</p>
+
+            <!-- Support + Terms (always visible) -->
+            <p style="font-size:12px; color:rgba(255,255,255,.75); margin:4px 0 0">
+              Need help? <a href="mailto:truthlayer.ai@gmail.com" style="color:#D4AF37">truthlayer.ai@gmail.com</a> ·
+              <a href="#terms" style="color:#D4AF37">Terms & Refunds</a> ·
+              <a download="buyers.csv"
+                 href='data:text/csv;charset=utf-8,buyer_name%2Corder_id%2Cproof_id%2Cdate%0AAlex%20Perez%2C1001%2CPRF-AX-001%2C2025-10-23%0ASam%20Lee%2C1002%2CPRF-SL-002%2C2025-10-23%0AJordan%20Kim%2C1003%2CPRF-JK-003%2C2025-10-23'
+                 style="color:#D4AF37">Download buyers.csv</a>
+            </p>
 
             <div style="font-size:12px; color:rgba(255,255,255,.65)">
               Tip: Submit the form first so we have your asset & buyers list; then complete payment.
@@ -165,6 +170,52 @@
         <li>Download → ZIP (PDF/PNG). Deliver + include DMCA template.</li>
       </ol>
       <p class="muted" style="margin-top:8px">Best practice: don’t put the TruthLayer logo on client deliverables by default. Use buyer-ID text always; client logo only if requested.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" class="light">
+  <div class="container">
+    <h2 style="font-size:28px;font-weight:800;margin:0 0 6px">Portfolio</h2>
+    <p class="muted" style="margin:8px 0 16px">
+      Subtle corner tags + buyer ID text. Optional faint logo tile on request.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:14px">
+      <!-- Item 1 -->
+      <div class="pricing-card" style="display:grid;grid-template-columns:1fr;gap:10px">
+        <div style="font-weight:700">Notion Template — Creator Ops</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center">
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200&auto=format&fit=crop" alt="Before watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">Before</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop" alt="After watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">After — corner tag + buyer ID</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="pricing-card" style="display:grid;grid-template-columns:1fr;gap:10px">
+        <div style="font-weight:700">PDF Guide — Launch Playbook</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center">
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Before watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">Before</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="After watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">After — faint logo tile + ID text</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <a href="#intake" class="btn btn-gold">Start your batch</a>
     </div>
   </div>
 </section>
@@ -244,7 +295,7 @@
 <footer>
   <div class="container row">
     <div>Questions? <span style="color:var(--gold)">truthlayer.ai@gmail.com</span></div>
-    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v9</div>
+    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v11</div>
   </div>
 </footer>
 
