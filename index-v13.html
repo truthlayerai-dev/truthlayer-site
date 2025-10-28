@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>TruthLayer — Leak-Lock</title>
+<meta name="description" content="Stop leaks. Personalized watermarks for every buyer. DMCA takedown kit included.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href='data:image/svg+xml;utf8,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="%230F172A"/>
+  <text x="50%" y="54%" font-size="32" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" fill="%23D4AF37">TL</text>
+</svg>'>
+
+<!-- Meta preview (OG / Twitter) -->
+<meta property="og:title" content="TruthLayer — Leak-Lock">
+<meta property="og:description" content="Personalized watermark per buyer. 24h turnaround + DMCA kit. Founders price $39/mo (+$25 Rush).">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://truthlayerai-dev.github.io/truthlayer-site/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TruthLayer — Leak-Lock">
+<meta name="twitter:description" content="Stop leaks. Personalized watermarks for every buyer. DMCA takedown kit included.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop">
+
+<style>
+  :root { --gold:#D4AF37; --navy:#0F172A; --text:#ffffff; }
+  html,body{margin:0;padding:0;background:var(--navy);color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  *{box-sizing:border-box}
+  .container{max-width:1100px;margin:0 auto;padding:16px}
+  header{border-bottom:1px solid rgba(255,255,255,.12)}
+  header .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600}
+  .logo{width:36px;height:36px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-weight:800}
+  a.link{color:rgba(255,255,255,.85);text-decoration:underline}
+  .hero{display:grid;grid-template-columns:1fr;gap:24px;padding:36px 0}
+  @media(min-width:900px){.hero{grid-template-columns:1.1fr .9fr}}
+  h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:0;font-weight:800}
+  p.lead{margin:12px 0 0;font-size:18px;color:rgba(255,255,255,.85)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.5);
+        color:var(--gold);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;letter-spacing:.02em}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:14px;font-weight:600;border:1px solid transparent;cursor:pointer;text-decoration:none}
+  .btn-gold{background:var(--gold);color:var(--navy)}
+  .btn-ghost{border-color:rgba(255,255,255,.2);color:#fff;background:transparent;border:1px solid rgba(255,255,255,.2)}
+  .card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:20px;padding:18px}
+  .steps ol{margin:0;padding-left:18px;color:rgba(255,255,255,.9)}
+  code.inline{background:rgba(0,0,0,.45);padding:2px 6px;border-radius:6px}
+  form{display:grid;gap:12px}
+  label{font-size:14px;color:rgba(255,255,255,.85)}
+  input,textarea,select{width:100%;margin-top:6px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff}
+  textarea{resize:vertical;min-height:90px}
+  .grid-2{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:720px){.grid-2{grid-template-columns:1fr 1fr}}
+  .light{background:#fff;color:#111827}
+  .light .container{padding:40px 16px}
+  .pricing-card{border:1px solid #e5e7eb;border-radius:20px;padding:18px;background:#fff}
+  .price{color:var(--gold);font-weight:800;font-size:32px}
+  .muted{color:#6b7280}
+  footer{border-top:1px solid rgba(255,255,255,.12)}
+  footer .row{display:flex;align-items:center;justify-content:space-between;padding:22px 0;color:rgba(255,255,255,.7);font-size:14px}
+  html{scroll-behavior:smooth}
+  .hidden{display:none}
+  .panel{background:#0B1226;color:#fff}
+  .panel .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-align:center}
+  .testi{display:grid;gap:12px}
+  @media(min-width:780px){.testi{grid-template-columns:1fr 1fr 1fr}}
+  .quote{border:1px solid #e5e7eb;border-radius:16px;background:#fff;padding:16px}
+  .quote p{margin:0 0 8px 0}
+  .quote .who{font-weight:700;color:#111827}
+  .quote .role{color:#6b7280;font-size:12px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container row">
+    <div class="brand"><div class="logo">TL</div><div>TruthLayer</div></div>
+    <nav style="display:flex;gap:16px">
+      <a class="link" href="#intake">Get Started</a>
+      <a class="link" href="#portfolio">Portfolio</a>
+      <a class="link" href="#testimonials">Testimonials</a>
+      <a class="link" href="#terms">Terms</a>
+    </nav>
+  </div>
+</header>
+
+<section>
+  <div class="container hero">
+    <div>
+      <span class="pill">Founders Price — $39/mo (first 10)</span>
+      <h1 style="margin-top:10px">Stop leaks. <span style="color:var(--gold)">Personalized watermarks</span> for every buyer.</h1>
+      <p class="lead">Keep your revenue. DMCA takedown kit included. Batch-generate one unique copy per buyer.</p>
+
+      <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:10px">
+        <a href="#intake" class="btn btn-gold">Get Started</a>
+        <a href="#intake" class="btn btn-ghost">I already emailed</a>
+      </div>
+
+      <!-- Intake Form (Formspree) -->
+      <div id="intake" style="margin-top:28px">
+        <form action="https://formspree.io/f/movkbyol" method="POST" class="card" id="intakeForm">
+          <input type="hidden" name="_redirect" value="index.html#thank-you">
+          <input type="hidden" name="_subject" value="TruthLayer Leak-Lock — New Request">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="grid-2">
+            <div><label>Your Name<input required name="name" type="text" placeholder="Jane Creator"></label></div>
+            <div><label>Email<input required name="email" type="email" placeholder="you@example.com" autocomplete="email"></label></div>
+          </div>
+
+          <div class="grid-2">
+            <div><label>Asset Link (Drive/Dropbox)<input required name="asset" type="url" placeholder="https://drive.google.com/..."></label></div>
+            <div><label>Buyer List Link (CSV or doc)<input name="buyers" type="url" placeholder="https://dropbox.com/..."></label></div>
+          </div>
+
+          <div><label>Notes (placement, opacity, deadline)
+            <textarea name="notes" placeholder="Corner tag top-right @ 65%, text @ 35%. Need by Friday."></textarea>
+          </label></div>
+
+          <div class="grid-2">
+            <div><label>Style
+              <select name="style">
+                <option value="Corner tag only">Corner tag only</option>
+                <option value="Corner + faint tiled overlay">Corner + faint tiled overlay</option>
+              </select>
+            </label></div>
+            <div><label>Urgency
+              <select name="urgency" id="urgencySelect">
+                <option value="standard">Standard (24h)</option>
+                <option value="rush">Rush (asap)</option>
+              </select>
+            </label></div>
+          </div>
+
+          <div class="grid-2">
+            <div><label>Logo watermark
+              <select name="logo_pref">
+                <option>No logo (default)</option>
+                <option>Client logo faint tile (8–12% opacity)</option>
+                <option>Client logo corner tag</option>
+              </select>
+            </label></div>
+            <div><label>Client logo URL (optional PNG/SVG)
+              <input name="logo_url" type="url" placeholder="https://.../logo.png">
+            </label></div>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="margin-top:4px">Send Request</button>
+
+          <!-- Whop Toolkit button -->
+          <a href="https://whop.com/checkout/plan_J1UJVl1XUSgfI?d2c=true&utm_source=site&utm_medium=button&utm_campaign=toolkit_launch"
+             class="btn btn-gold" style="text-align:center; display:inline-flex; margin:10px 0"
+             target="_blank" rel="noopener noreferrer">
+            Buy the $25 Leak-Lock Toolkit on Whop
+          </a>
+
+          <!-- Stripe Pay buttons (both visible) -->
+          <div id="payButtons" style="margin-top:10px; display:grid; gap:8px">
+            <a id="payStarter" href="https://buy.stripe.com/3cI8wIbK2bYM9bC5LjaVa00"
+               class="btn btn-gold" style="text-align:center" target="_blank" rel="noopener noreferrer">
+              Pay $39 — Starter (Monthly)
+            </a>
+
+            <a id="payRush" href="https://buy.stripe.com/14AfZa5lE5AodrS3DbaVa01"
+               class="btn btn-ghost" style="display:inline-flex; text-align:center" target="_blank" rel="noopener noreferrer">
+              + $25 Rush Add-On (ASAP)
+            </a>
+
+            <!-- Support + Terms + buyers.csv -->
+            <p style="font-size:12px; color:rgba(255,255,255,.75); margin:4px 0 0">
+              Need help? <a href="mailto:truthlayer.ai@gmail.com" style="color:#D4AF37">truthlayer.ai@gmail.com</a> ·
+              <a href="#terms" style="color:#D4AF37">Terms & Refunds</a> ·
+              <a download="buyers.csv"
+                 href='data:text/csv;charset=utf-8,buyer_name%2Corder_id%2Cproof_id%2Cdate%0AAlex%20Perez%2C1001%2CPRF-AX-001%2C2025-10-23%0ASam%20Lee%2C1002%2CPRF-SL-002%2C2025-10-23%0AJordan%20Kim%2C1003%2CPRF-JK-003%2C2025-10-23'
+                 style="color:#D4AF37">Download buyers.csv</a>
+            </p>
+
+            <div style="font-size:12px; color:rgba(255,255,255,.65)">
+              Tip: Submit the form first so we have your asset & buyers list; then complete payment.
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Quick Start card -->
+    <div class="card steps">
+      <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px">
+        Quick Start (Canva)
+      </div>
+      <ol>
+        <li>Upload your asset (or the demo PDF).</li>
+        <li>Place buyer-ID text @ <b>35%</b> opacity:<br><span class="inline">{{buyer_name}} · {{order_id}} · {{date}} · {{proof_id}})</span></li>
+        <li>(Optional) Client logo:
+          <ul>
+            <li><b>Faint tile:</b> tiny logo repeated, <b>8–12%</b> opacity, behind content.</li>
+            <li><b>Corner tag:</b> small logo top-right, <b>60–70%</b> opacity, then <b>Lock</b>.</li>
+          </ul>
+        </li>
+        <li>Apps → Bulk Create → Upload CSV → map fields → Generate multiple designs.</li>
+        <li>Download → ZIP (PDF/PNG). Deliver + include DMCA template.</li>
+      </ol>
+      <p class="muted" style="margin-top:8px">Best practice: don’t put the TruthLayer logo on client deliverables by default. Use buyer-ID text always; client logo only if requested.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" class="light">
+  <div class="container">
+    <h2 style="font-size:28px;font-weight:800;margin:0 0 6px">Portfolio</h2>
+    <p class="muted" style="margin:8px 0 16px">
+      Subtle corner tags + buyer ID text. Optional faint logo tile on request.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:14px">
+      <div class="pricing-card" style="display:grid;grid-template-columns:1fr;gap:10px">
+        <div style="font-weight:700">Notion Template — Creator Ops</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center">
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1200&auto=format&fit=crop" alt="Before watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">Before</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop" alt="After watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">After — faint logo tile + ID text</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="pricing-card" style="display:grid;grid-template-columns:1fr;gap:10px">
+        <div style="font-weight:700">PDF Guide — Launch Playbook</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center">
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Before watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">Before</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop" alt="After watermark" style="width:100%;border-radius:12px;border:1px solid #e5e7eb">
+            <figcaption class="muted" style="font-size:12px;margin-top:4px">After — faint logo tile + ID text</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <a href="#intake" class="btn btn-gold">Start your batch</a>
+    </div>
+  </div>
+</section>
+
+<section class="light" style="padding-top:0">
+  <div class="container faq">
+    <h2 style="font-size:28px;font-weight:800;margin:0 0 6px">FAQ</h2>
+    <p><b>Will buyers notice the watermark?</b><br>Text is subtle (~35% opacity) and sits near content; logo (if used) is very faint.</p>
+    <p><b>Can’t someone crop it out?</b><br>We place identifiers near content; optional faint tile adds deterrence.</p>
+    <p><b>Turnaround?</b><br>Typically within 24 hours for image/PDF batches.</p>
+    <p><b>What file types?</b><br>PDF, PNG/JPG, and MP4 (Pro).</p>
+  </div>
+</section>
+
+<section id="thank-you" class="panel hidden">
+  <div class="container">
+    <div class="card" style="max-width:700px;margin:24px auto">
+      <div style="color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-weight:700">TruthLayer</div>
+      <h2 style="margin:10px 0 0">You're in. Let's stop leaks.</h2>
+      <p>We’ll reply from <span style="color:var(--gold)">truthlayer.ai@gmail.com</span> with next steps.</p>
+      <p style="opacity:.85">Tip: include your asset link + buyer list for the fastest turnaround.</p>
+      <p><a href="#" style="color:var(--gold);text-decoration:underline">← Back to top</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="terms" class="light">
+  <div class="container">
+    <h2 style="font-size:28px;font-weight:800;margin:0 0 6px">Terms & Refunds</h2>
+    <p style="opacity:.7">Effective: October 15, 2025</p>
+    <h3 style="margin:18px 0 6px">Service</h3>
+    <p>TruthLayer provides digital watermarking services that produce personalized copies of customer-supplied assets (PDF, images, and on Pro, video). Output is delivered as a ZIP (and/or links) and includes a lightweight DMCA takedown template.</p>
+    <h3 style="margin:18px 0 6px">Turnaround</h3>
+    <p>Typical turnaround for image/PDF batches is 24 hours from receipt of complete inputs (asset link + buyer list). Video requests may require additional time.</p>
+    <h3 style="margin:18px 0 6px">Your Responsibilities</h3>
+    <ul style="margin:6px 0 0 18px">
+      <li>You warrant you own or have rights to process and watermark the provided asset(s).</li>
+      <li>No unlawful content or materials that violate third-party rights.</li>
+      <li>Review deliverables promptly and notify us of issues within 3 business days.</li>
+    </ul>
+    <h3 style="margin:18px 0 6px">Refunds</h3>
+    <p>Because this is a custom digital service, refunds aren’t guaranteed after delivery. If we fail to deliver your first batch within 48 hours after receiving complete inputs, you may request a refund at <a href="mailto:truthlayer.ai@gmail.com">truthlayer.ai@gmail.com</a>.</p>
+    <h3 style="margin:18px 0 6px">Privacy</h3>
+    <p>We only use buyer lists and assets you provide to generate personalized output for you. Avoid sensitive data; use secure links (Drive/Dropbox) with appropriate permissions.</p>
+    <h3 style="margin:18px 0 6px">Contact</h3>
+    <p>Email: <a href="mailto:truthlayer.ai@gmail.com">truthlayer.ai@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container row">
+    <div>Questions? <span style="color:var(--gold)">truthlayer.ai@gmail.com</span></div>
+    <div style="color:rgba(255,255,255,.55);font-size:12px">© <span id="y"></span> TruthLayer — Build v13</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href="#intake"]');
+    if (!a) return;
+    setTimeout(function(){
+      const first = document.querySelector('#intake input[name="name"]');
+      if (first) first.focus();
+    }, 80);
+  });
+
+  function updatePanels(){
+    const ty = document.getElementById('thank-you');
+    if (!ty) return;
+    if (location.hash === '#thank-you'){
+      ty.classList.remove('hidden');
+      setTimeout(()=>ty.scrollIntoView({behavior:'smooth'}), 50);
+    } else {
+      ty.classList.add('hidden');
+    }
+  }
+  window.addEventListener('hashchange', updatePanels);
+  updatePanels();
+</script>
+</body>
+</html>
